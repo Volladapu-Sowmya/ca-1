@@ -1,0 +1,87 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            color: #243447;
+        }
+
+        header {
+            background: #17365d;
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #00000012;
+        }
+
+        .card h2 {
+            color: #17365d;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #17365d;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+        }
+
+        .card a:hover {
+            background: #24558c;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>CA Assistant</h1>
+    <p>Your simple workspace for managing clients and tasks</p>
+</header>
+
+<div class="container">
+    <h2>Dashboard</h2>
+
+    <div class="features">
+        <div class="card">
+            <h2>Client Manager</h2>
+            <p>Manage client names, contact details, and client types.</p>
+            <a href="/clients">Manage Clients</a>
+        </div>
+
+        <div class="card">
+            <h2>Task & Deadline Tracker</h2>
+            <p>Track work, due dates, and pending or completed tasks.</p>
+            <a href="/tasks">Manage Tasks</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+```

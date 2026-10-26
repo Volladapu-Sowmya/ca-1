@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CA Assistant - Client Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #243447;
+            margin: 0;
+        }
+
+        header {
+            background-color: #17365d;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #17365d;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        button {
+            background-color: #17365d;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background-color: #24558c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #17365d;
+            color: white;
+        }
+
+        .empty-message {
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #17365d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 15px;
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>CA Assistant</h1>
+    <p>Client Manager</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Add New Client</h2>
+        <p>Enter the client's details below.</p>
+
+        <form action="/clients" method="post" th:object="${client}">
+
+            <p>
+                <label for="name">Client Name</label>
+                <input type="text"
+                       id="name"
+                       th:field="*{name}"
+                       placeholder="Enter client name"
+                       required>
+            </p>
+
+            <p>
+                <label for="phone">Phone Number</label>
+                <input type="tel"
+                       id="phone"
+                       th:field="*{phone}"
+                       placeholder="Enter phone number"
+                       required>
+            </p>
+
+            <p>
+                <label for="type">Client Type</label>
+                <select id="type" th:field="*{type}" required>
+                    <option value="">Select client type</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Business">Business</option>
+                </select>
+            </p>
+
+            <button type="submit">Save Client</button>
+
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Client List</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Phone Number</th>
+                <th>Client Type</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="client : ${clients}">
+                <td th:text="${client.name}"></td>
+                <td th:text="${client.phone}"></td>
+                <td th:text="${client.type}"></td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(clients)}">
+                <td colspan="3" class="empty-message">
+                    No clients added yet. Add your first client above.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="/" class="back-link">← Back to Dashboard</a>
+    </div>
+
+</div>
+
+</body>
+</html>
